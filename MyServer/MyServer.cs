@@ -29,7 +29,8 @@ public class MyServer {
             Console.WriteLine($"Transmitter: {message.Transmitter}");
             Console.WriteLine($"Date: {message.Date}");
             Console.WriteLine();
-
+            SendShippingConfirmation();
+            
             Console.WriteLine("Enter the response text:");
             string responseText = Console.ReadLine();
 
@@ -43,6 +44,15 @@ public class MyServer {
             SendMessage(response, remoteEndPoint);
             Console.WriteLine("Response sent successfully.");
         }
+    }
+    
+    private void SendShippingConfirmation() {
+        Message message = new Message {
+            Text = "message successfully sent",
+            Author = "MyServer",
+            Date = DateTime.Now
+        };
+        SendMessage(message, remoteEndPoint);
     }
 
     private void SendMessage(Message message, IPEndPoint endPoint) {

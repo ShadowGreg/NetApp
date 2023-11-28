@@ -1,0 +1,140 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\Client\\Client.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\Client\\Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\Client\\Client.csproj",
+        "projectName": "Client",
+        "projectPath": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\Client\\Client.csproj",
+        "packagesPath": "C:\\Users\\shado\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\DevExpress 22.1\\Components\\Offline Packages",
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shado\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\shado\\Downloads": {},
+          "D:\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+                "projectPath": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.2.23502.2/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectName": "ConsoleApp1",
+        "projectPath": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "packagesPath": "C:\\Users\\shado\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shado\\OneDrive\\Desktop\\GB\\Разработка сетевого приложения С#\\Урок1.Работа_с_сетью_чтение_и_запись_данных_в_сеть_Клиентские_и_серверные_приложения\\Seminar\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\DevExpress 22.1\\Components\\Offline Packages",
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\shado\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\shado\\Downloads": {},
+          "D:\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.2.23502.2/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
