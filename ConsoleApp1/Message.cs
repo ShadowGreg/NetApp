@@ -9,10 +9,5 @@ public class Message {
     public DateTime Date { get; set; }
     public int Id { get; set; }
     
-    public string SerializeMessageToJson() {
-        return JsonSerializer.Serialize(this);
-    }
-    public static Message? DeserializeMessageFromJson(string json) {
-        return JsonSerializer.Deserialize<Message>(json);
-    }
+
 }
