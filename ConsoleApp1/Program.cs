@@ -7,7 +7,6 @@ message.Text = "This is a message.";
 message.Author = "John Doe";
 message.Transmitter = "Jane Doe";
 message.Date = DateTime.Now;
-message.Id = 1;
 
 
 // Serialize the message to JSON.
