@@ -2,5 +2,13 @@
 
 using Client;
 
-Coordinator coordinator = new Coordinator( 3130);
-coordinator.Start();
+namespace Client;
+
+public class Program {
+    public static void Main(string[] args) {
+        int serverPort = 3130;
+        Client _client = new(serverPort, "127.0.0.1");
+        var coordinator = new Coordinator(_client);
+        coordinator.Start();
+    }
+}
