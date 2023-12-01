@@ -4,11 +4,14 @@ using Client;
 
 namespace Client;
 
-public class Program {
+public static class Program {
     public static void Main(string[] args) {
-        int serverPort = 3130;
-        Client _client = new(serverPort, "127.0.0.1");
-        var coordinator = new Coordinator(_client);
-        coordinator.Start();
+        const int serverPort = 3130;
+        const string serverIp = "127.0.0.1";
+        Client client = new(serverPort, serverIp);
+        
+        var coordinator = new Coordinator(client);
+        
+        coordinator.Run();
     }
 }
