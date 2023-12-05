@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
+﻿using System.Diagnostics.Tracing;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using ConsoleApp1;
 
 namespace MyServer {
@@ -14,46 +10,36 @@ namespace MyServer {
         private readonly UdpClient _udpServer;
         public List<IPEndPoint> ActiveClients { get; }
         private volatile bool _flag = true;
+        private CancellationToken _cancellationToken;
 
         public MyServer(int serverPort) {
             _udpServer = new UdpClient(serverPort);
             ActiveClients = new List<IPEndPoint>();
         }
 
-        public void Start() {
+        public async Task Start(CancellationToken cancellationToken) {
             Console.WriteLine("MyServer started. Listening for messages...");
-
-            // Start a new thread to handle incoming client connections
-            var connectionThread = new Thread(HandleClientConnections);
-            connectionThread.Start();
-            connectionThread.Join();
+            await HandleClientConnectionsAsync();
+            _cancellationToken = cancellationToken;
         }
 
-        private void SendMessage(Message message, IPEndPoint endPoint) {
+        private async Task SendMessageAsync(Message message, IPEndPoint endPoint) {
             string json = JsonSerializer.Serialize(message);
             byte[] data = Encoding.UTF8.GetBytes(json);
-            _udpServer.Send(data, data.Length, endPoint);
+            await _udpServer.SendAsync(data, data.Length, endPoint);
         }
 
-        private void HandleClientConnections() {
-            while (_flag) {
+        private async Task HandleClientConnectionsAsync() {
+            while (_flag && !_cancellationToken.IsCancellationRequested) {
                 var clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
                 byte[] data = _udpServer.Receive(ref clientEndPoint);
 
-                // Start a new  client connection
-                try {
-                    var connectionThread = new Thread(() => HandleClientConnection(clientEndPoint, data));
-                    connectionThread.Start();
-                    connectionThread.Join();
-                }
-                catch (Exception e) {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                // Start a new client connection
+                await HandleClientConnectionAsync(clientEndPoint, data);
             }
         }
 
-        private void HandleClientConnection(IPEndPoint clientEndPoint, byte[] data) {
+        private async Task HandleClientConnectionAsync(IPEndPoint clientEndPoint, byte[] data) {
             string json = Encoding.UTF8.GetString(data);
             var message = JsonSerializer.Deserialize<Message>(json);
 
@@ -67,8 +53,9 @@ namespace MyServer {
 
             if (message.Text.Contains("Exit")) {
                 _flag = false;
-                throw new EventSourceException("Server stopped");
+                _cancellationToken.Register(() => throw new EventSourceException("Server stopped"));
             }
+
 
             // Send a response to the client
             Message response = new Message {
@@ -77,7 +64,7 @@ namespace MyServer {
                 Transmitter = message.Author,
                 Date = DateTime.Now
             };
-            SendMessage(response, clientEndPoint);
+            await SendMessageAsync(response, clientEndPoint);
         }
     }
 }

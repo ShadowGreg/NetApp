@@ -1,8 +1,13 @@
 ﻿namespace MyServer {
     public static class Program {
-        public static void Main() {
+        static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        static CancellationToken cancellationToken = cancellationTokenSource.Token;
+        public static async Task Main() {
             var server = new MyServer(3130);
-            server.Start();
+            await server.Start(cancellationToken);
+            
+            // To stop the server, call:
+            await cancellationTokenSource.CancelAsync();
         }
     }
 }
