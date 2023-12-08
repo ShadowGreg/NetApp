@@ -6,7 +6,7 @@ namespace Client;
 
 public static class Program {
     public static void Main(string[] args) {
-        const int serverPort = 3130;
+        const int serverPort = 4444;
         const string serverIp = "127.0.0.1";
         Client client = new(serverPort, serverIp);
         
