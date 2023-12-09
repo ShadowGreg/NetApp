@@ -1,14 +1,14 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.Json;
-using Domain;
 
 public class UdpClient(string serverIp, int serverPort) {
-    private System.Net.Sockets.UdpClient udpClient = new();
-    private IPEndPoint remoteEndPoint = new(IPAddress.Parse((string)serverIp), serverPort);
-    private IPEndPoint localEndPoint = new(IPAddress.Any, 0);
+    private readonly System.Net.Sockets.UdpClient _udpClient = new();
+    private readonly IPEndPoint _remoteEndPoint = new(IPAddress.Parse((string)serverIp), serverPort);
+    private IPEndPoint _localEndPoint = new(IPAddress.Any, 0);
     private volatile bool _flag = true;
+    private readonly MessageService _messageService = new MessageService();
+
 
     public void Run() {
         Console.WriteLine("UDP Client started. Listening for messages...");
@@ -23,14 +23,14 @@ public class UdpClient(string serverIp, int serverPort) {
         Task.WaitAll(receiveTask, sendTask);
 
         // Close the UDP client
-        udpClient.Close();
+        _udpClient.Close();
     }
 
     private void ReceiveMessages() {
         try {
-            udpClient.Client.Bind(localEndPoint);
+            _udpClient.Client.Bind(_localEndPoint);
             while (_flag) {
-                byte[] data = udpClient.Receive(ref localEndPoint);
+                byte[] data = _udpClient.Receive(ref _localEndPoint);
                 string message = Encoding.UTF8.GetString(data);
                 Console.WriteLine("Received message: " + message);
             }
@@ -48,30 +48,22 @@ public class UdpClient(string serverIp, int serverPort) {
 
                 if (input == "EXIT") {
                     input = "server -d";
-                    byte[] message = BytesFromMessage(input);
-                    udpClient.Send(message, message.Length, remoteEndPoint);
+                    byte[] message = _messageService.BytesFromMessage(input, _localEndPoint.Address.ToString());
+                    _udpClient.Send(message, message.Length, _remoteEndPoint);
                     _flag = false;
                     break; // Exit the loop and stop sending messages
                 }
 
-                byte[] data = BytesFromMessage(input);
-                udpClient.Send(data, data.Length, remoteEndPoint);
+                if (input != null) {
+                    byte[] data = _messageService.BytesFromMessage(input, _localEndPoint.Address.ToString());
+                    _udpClient.Send(data, data.Length, _remoteEndPoint);
+                }
+
                 Console.WriteLine("Message sent.");
             }
         }
         catch (SocketException ex) {
             Console.WriteLine("SocketException: " + ex.Message);
         }
-    }
-
-    private byte[] BytesFromMessage(string input) {
-        Message message = new Message {
-            Text = input,
-            Author = localEndPoint.Address.ToString(),
-            Transmitter = "Server",
-            Date = DateTime.Now
-        };
-        byte[] data = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
-        return data;
     }
 }

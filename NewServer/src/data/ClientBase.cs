@@ -4,10 +4,10 @@ using NewServer.Service;
 namespace NewServer;
 
 public class ClientBase {
-    private readonly Dictionary<string, User> _activeClients = new();
+    private readonly Dictionary<string, IPEndPoint> _activeClients = new();
     public Task Registration(string name, IPEndPoint endPoint) {
         try {
-            _activeClients.TryAdd(name, new User(name, endPoint));
+            _activeClients.TryAdd(name,  endPoint);
             ConsoleLogger.Log("Client add to base: " + endPoint.ToString());
         }
         catch (Exception e) {
@@ -31,5 +31,5 @@ public class ClientBase {
         return Task.CompletedTask;
     }
 
-    public Dictionary<string, User> GetActiveClients() => _activeClients;
+    public Dictionary<string, IPEndPoint> GetActiveClients() => _activeClients;
 }
