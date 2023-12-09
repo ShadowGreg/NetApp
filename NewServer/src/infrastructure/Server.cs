@@ -79,7 +79,7 @@ public class Server(ClientBase clientBase) {
                 List<IPEndPoint> endPoints = clientBase.GetActiveClients().Values.ToList();
                 foreach (var point in endPoints) {
                     message.Transmitter = point.ToString();
-                    if (point.Address.ToString() != message.Author) {
+                    if (point.ToString() != message.Author) {
                         await SendMessage(message, point);
                     }
                 }

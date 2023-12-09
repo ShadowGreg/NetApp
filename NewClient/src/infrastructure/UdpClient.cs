@@ -1,18 +1,19 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Domain;
 
 public class UdpClient(string serverIp, int serverPort) {
     private readonly System.Net.Sockets.UdpClient _udpClient = new();
     private readonly IPEndPoint _remoteEndPoint = new(IPAddress.Parse((string)serverIp), serverPort);
-    private IPEndPoint _localEndPoint = new(IPAddress.Any, 0);
+    private IPEndPoint _localEndPoint = new(IPAddress.Parse("127.0.0.1"), 0);
     private volatile bool _flag = true;
     private readonly MessagMap _messagMap = new MessagMap();
 
 
     public void Run() {
         Console.WriteLine("UDP Client started. Listening for messages...");
-        
+
         // Start a task to listen for incoming messages
         Task receiveTask = Task.Run(ReceiveMessages);
 
@@ -57,7 +58,9 @@ public class UdpClient(string serverIp, int serverPort) {
                 }
 
                 if (input != null) {
-                    byte[] data = _messagMap.BytesFromMessage(input, _localEndPoint.Address.ToString());
+                    byte[] data = _messagMap.BytesFromMessage(
+                        input,
+                        _localEndPoint.Address + ":" + _localEndPoint.Port);
                     _udpClient.Send(data, data.Length, _remoteEndPoint);
                 }
 
