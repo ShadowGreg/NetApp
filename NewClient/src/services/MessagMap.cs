@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.Json;
 using Domain;
 
-public class MessageService {
+public class MessagMap {
     public byte[] BytesFromMessage(string input, string address) {
         Message message = new Message {
             Text = input,

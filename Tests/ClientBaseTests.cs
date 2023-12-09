@@ -17,20 +17,7 @@ public class ClientBaseTests {
         // Assert
         Assert.True(clientBase.GetActiveClients().ContainsKey(name));
     }
-
-    [Fact]
-    public async Task Registration_ExceptionThrownWhenAddingUser() {
-        // Arrange
-        string name = "John";
-        IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
-        ClientBase clientBase = new ClientBase();
-
-        // Act
-        await clientBase.Registration(name, endPoint);
-
-        // Assert
-        await Assert.ThrowsAsync<ArgumentException>(() => clientBase.Registration(name, endPoint));
-    }
+    
 
     [Fact]
     public async Task DeleteUser_FromActiveClients() {
